@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="Real">
+ 
+    <resultMap id="result" type="Real">
+        <result property="vkey" column="vkey"/>
+        <result property="real" column="real"/>   
+        <result property="name_ogr" column="name_ogr"/>
+    </resultMap>
+ 
+    <select id="selectAll" resultMap="result">
+        SELECT * FROM real;
+    </select>
+ 
+    <select id="selectByVkey" parameterType="String" resultMap="result">
+        SELECT * FROM real WHERE vkey = #{vkey}
+    </select>
+</mapper>

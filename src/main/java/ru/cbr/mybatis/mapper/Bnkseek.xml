@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Bnkseek">
+
+	<resultMap id="result" type="Bnkseek">
+		<result property="vkey" column="vkey" />
+		<result property="real" column="real" />
+		<result property="pzn" column="pzn" />
+		<result property="uer" column="uer" />
+		<result property="reg" column="reg" />
+		<result property="ind" column="ind" />
+		<result property="tnp" column="tnp" />
+		<result property="nnp" column="nnp" />
+		<result property="adr" column="adr" />
+		<result property="rkc" column="rkc" />
+		<result property="namep" column="namep" />
+		<result property="newnum" column="newnum" />
+		<result property="telef" column="telef" />
+		<result property="regn" column="regn" />
+		<result property="okpo" column="okpo" />
+		<result property="dt_izm" column="dt_izm" />
+		<result property="ksnp" column="ksnp" />
+		<result property="date_in" column="date_in" />
+		<result property="date_ch" column="date_ch" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="result">
+		SELECT * FROM bnkseek;
+	</select>
+
+	<select id="selectByVkey" parameterType="String" resultMap="result">
+		SELECT * FROM bnkseek WHERE vkey = #{vkey}
+	</select>
+	
+	<select id="selectByNewnum" parameterType="String" resultMap="result">
+		SELECT * FROM bnkseek WHERE newnum = #{newnum}
+	</select>
+
+	<select id="selectFilter" parameterType="hashmap" resultMap="result">
+		SELECT * FROM bnkseek
+		<where>
+			<if test="bik != null">
+				newnum = #{bik}
+			</if>
+			<if test="rgn != null">
+				AND rgn = #{rgn}
+			</if>
+			<if test="type != null">
+				AND pzn = #{type}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="Bnkseek" useGeneratedKeys="true"
+		keyProperty="vkey">
+		INSERT INTO bnkseek (vkey, real, pzn, uer, rgn, ind,
+		tnp, nnp, adr, rkc, namep, newnum, telef,
+		regn, okpo, dt_izm, ksnp, date_in, date_ch)
+		VALUES (#{vkey}, #{real}, #{pzn}, #{uer}, #{rgn}, #{ind},
+		#{tnp}, #{nnp}, #{adr}, #{rkc}, #{namep}, #{newnum}, #{telef},
+		#{regn}, #{okpo}, #{dt_izm}, #{ksnp}, #{date_in}, #{date_ch});
+	</insert>
+
+	<update id="update" parameterType="Bnkseek">
+		UPDATE bnkseek
+		SET real = #{real},
+		pzn = #{pzn}, uer = #{uer}, rgn = #{rgn},
+		ind = #{ind}, tnp = #{tnp}, nnp = #{nnp},
+		adr = #{adr}, rkc = #{rkc}, namep = #{namep},
+		newnum = #{newnum}, telef = #{telef}, regn = #{regn},
+		okpo = #{okpo}, dt_izm = #{dt_izm}, ksnp = #{ksnp},
+		date_in = #{date_in}, date_ch = #{date_ch}
+		WHERE vkey = #{vkey}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		DELETE from bnkseek WHERE vkey = #{vkey}
+	</delete>
+</mapper>

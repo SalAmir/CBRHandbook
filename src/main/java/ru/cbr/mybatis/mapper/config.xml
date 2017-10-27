@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+<configuration>
+    <typeAliases>
+        <typeAlias alias="Bnkseek" type="ru.cbr.model.Bnkseek"/> 
+        <typeAlias alias="Pzn" type="ru.cbr.model.Pzn"/>   
+        <typeAlias alias="Real" type="ru.cbr.model.Real"/>   
+        <typeAlias alias="Reg" type="ru.cbr.model.Reg"/>   
+        <typeAlias alias="Tnp" type="ru.cbr.model.Tnp"/>  
+        <typeAlias alias="Uer" type="ru.cbr.model.Uer"/>          
+    </typeAliases>
+ 
+    <environments default="development">
+        <environment id="development">
+          <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="org.postgresql.Driver"/>
+                <property name="url" value="jdbc:postgresql://localhost:5432/test"/>
+                <property name="username" value="postgres"/>
+                <property name="password" value="12345"/>
+            </dataSource>
+       </environment>
+    </environments>
+    <mappers>
+       <mapper resource="ru/cbr/mybatis/mapper/Bnkseek.xml"/>
+       <mapper resource="ru/cbr/mybatis/mapper/Pzn.xml"/>
+       <mapper resource="ru/cbr/mybatis/mapper/Real.xml"/>
+       <mapper resource="ru/cbr/mybatis/mapper/Reg.xml"/>
+       <mapper resource="ru/cbr/mybatis/mapper/Tnp.xml"/>
+       <mapper resource="ru/cbr/mybatis/mapper/Uer.xml"/>
+    </mappers>
+</configuration>
