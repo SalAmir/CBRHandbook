@@ -1,0 +1,82 @@
+Создание таблиц Postgresql:
+
+CREATE DATABASE test_database;
+
+CREATE TABLE bnkseek
+(
+  vkey character varying(8) NOT NULL,
+  "real" character varying(4) REFERENCES real(real),
+  pzn character varying(2) REFERENCES pzn(pzn),
+  uer character varying(1) NOT NULL REFERENCES uer(uer),
+  rgn character varying(2) NOT NULL REFERENCES reg(rgn),
+  ind character varying(6),
+  tnp character varying(1) REFERENCES tnp(tnp),
+  nnp character varying(25),
+  adr character varying(30),
+  rkc character varying(9),
+  namep character varying(45) NOT NULL,
+  namen character varying(30) NOT NULL,
+  newnum character varying(9) NOT NULL UNIQUE,
+  newks character varying(9),
+  permfo character varying(6),
+  srok character varying(2) NOT NULL,
+  at1 character varying(7),
+  at2 character varying(7),
+  telef character varying(25),
+  regn character varying(9),
+  okpo character varying(8),
+  dt_izm date NOT NULL,
+  cks character varying(6),
+  ksnp character varying(20),
+  date_in date NOT NULL,
+  date_ch date,
+  vkeydel character varying(8) REFERENCES bnkseek(vkey),
+  dt_izmr date,
+  CONSTRAINT bnkseek_pkey PRIMARY KEY (vkey)
+)
+
+CREATE TABLE pzn
+(
+  vkey character(8),
+  pzn character(2) NOT NULL,
+  imy character(45),
+  name character(8),
+  cb_date date,
+  ce_date date,
+  CONSTRAINT pzn_pkey PRIMARY KEY (pzn)
+)
+
+CREATE TABLE "real"
+(
+  vkey character(8),
+  "real" character(4) NOT NULL,
+  name_ogr character(70),
+  CONSTRAINT real_pkey PRIMARY KEY ("real")
+)
+
+CREATE TABLE reg
+(
+  vkey character(8),
+  rgn character(2) NOT NULL,
+  name character(45),
+  center character(8),
+  namet character(8),
+  CONSTRAINT reg_pkey PRIMARY KEY (rgn)
+)
+
+CREATE TABLE tnp
+(
+  vkey character(8),
+  tnp character(1) NOT NULL,
+  fullname character(45),
+  shortname character(8),
+  CONSTRAINT tnp_pkey PRIMARY KEY (tnp)
+)
+
+CREATE TABLE uer
+(
+  vkey character(8),
+  uer character(1) NOT NULL,
+  uername character(45),
+  CONSTRAINT uer_pkey PRIMARY KEY (uer)
+)
